@@ -4,14 +4,16 @@ import sys, io
 class LabelFile(Label):
     ReadError = io.UnsupportedOperation('not readable')
     def __init__(self, master=None, redir_stdout=NO, cnf={}, **kw):
+        if not 'anchor' in cnf and not 'anchor' in kw: kw['anchor'] = NW
+        if not 'font'   in cnf and not 'font'   in kw: kw['font']   = ('courier', 10, NORMAL)
         Label.__init__(self, master, cnf, **kw)
         if redir_stdout: sys.stdout = self
     def read(self):
         raise self.ReadError
     def write(self, text):
-        self.config(text=text)
+        #self.config(text=text)
         self['text'] += text
-        sys.stderr.write(text)
+        #sys.stderr.write(text)
         return len(text)
     def readline(self):
         raise self.ReadError
@@ -24,7 +26,7 @@ class LabelFile(Label):
     def writable(self):
         return False
     def flush(self):
-        return
+        pass
     def __iter__(self):
         raise self.ReadError
 
@@ -39,7 +41,7 @@ if __name__ == '__main__':
             sleep(1)
             print('Time remaining', i, end='\r')
         sleep(2)
-        print('OVER')
+        print('\n\n\n\n\nOVER')
         sleep(5)
         win.quit()
     win.after(5000, go)
