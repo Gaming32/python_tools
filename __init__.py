@@ -1,1 +1,2 @@
-"A group of modules to help you with python programming"
+"A group of modules to aid you in python programming"
+from .tools import *
