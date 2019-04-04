@@ -16,3 +16,15 @@ def bestrel(path, *starts):
         for start in starts:
             bests.append(os.path.relpath(path, start))
     return shortest(*bests)
+
+def deldir(path):
+    for sub in os.listdir(path):
+        sub = os.path.join(path, sub)
+        if os.path.isdir(sub):
+            deldir(sub)
+        elif os.path.isfile(sub):
+            os.remove(sub)
+    os.rmdir(path)
+
+if __name__ == '__main__':
+    deldir(r"C:\Users\josia\MEGA\Projects\Programming Languages\Python\tkGame\cache\run\7f5e569dcd47aa8569336ffbb15b9664")
