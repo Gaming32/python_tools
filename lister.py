@@ -87,3 +87,15 @@ class ListTree:
             else:
                 result += spaces + '{0}={1}\n'.format(attr, getattr(obj, attr))
         return result
+
+class ListRepr:
+    def __repr__(self):
+        attrs = {}
+        init = self.__init__.__code__
+        for attr in dir(self):
+            if attr in init.co_varnames:
+                attrs[attr] = getattr(self, attr)
+        attrlist = []
+        for (attrname, attr) in attrs.items():
+            attrlist.append('%s=%r' % (attrname, attr))
+        return '%s(%s)' % (self.__class__.__qualname__, ', '.join(attrlist))

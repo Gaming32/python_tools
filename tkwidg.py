@@ -33,6 +33,12 @@ class LabelFile(Label):
     def __iter__(self):
         raise self.ReadError
 
+def hidewin(win, hidden):
+    "Hides or shows win based on the value of hidden"
+    win.overridedirect(hidden)
+    if hidden: win.iconify()
+    else: win.deiconify()
+
 if __name__ == '__main__':
     win = Tk()
     lbl = LabelFile(win, redir_stdout=YES, buffered=False)
