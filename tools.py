@@ -4,6 +4,15 @@ from time import clock as applicationruntime
 import os, sys
 
 def dictformat(dic):
+    """Format a dictionary object into a pretty format
+    
+    Parameters
+    ----------
+    dic : dict
+    
+    Returns
+    -------
+    str"""
     greatest = max(len(key) for key in dic.keys())
     ident = '\n    '
     res = []
@@ -19,11 +28,25 @@ def dictformat(dic):
     return '\n'.join(res)
 
 def fix_none(var, desired_type): 
-    "Returns var if var isn't None, otherwise it returns desired_type()"
+    """Returns var if var isn't None, otherwise it returns desired_type()
+    
+    Parameters
+    ----------
+    var
+    desired_type"""
     return (desired_type() if var == None else desired_type(var))
 
 def str_split_len(string, substrLength):
-    "Returns a list of strings of the length specified in substrLength"
+    """Returns a list of strings of the length specified in substrLength
+    
+    Parameters
+    ----------
+    string : str
+    substrLength : int
+    
+    Returns
+    -------
+    list of str"""
     words = []
     for i in range((len(string) // substrLength) + 1):
         i *= substrLength
@@ -36,6 +59,17 @@ def substr(string, start, length):
     return string[start:start + length]
 
 def impfile(path, fromlist=()):
+    """Imports a file from specified in path
+    
+    Warnings
+    --------
+    You need to be careful when using this tool due to the way it works
+    
+    Parameters
+    ----------
+    path : str
+    fromlist : tuple
+        corresponds to the fromlist parameter of the __import__ function"""
     path = os.path.split(path)
     path = (path[0], os.path.splitext(path[-1])[0])
     sys.path.insert(0, path[0])
