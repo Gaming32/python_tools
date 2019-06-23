@@ -122,7 +122,7 @@ def makewingui():
     def sres(sender, e):
         stxt.Text = scramble(stxt.Text)
     sbtn.Click += EventHandler(sres)
-    ubtn.MouseEnter += EventHandler(sres)
+    # ubtn.MouseEnter += EventHandler(sres)
     #
     # ubtn
     #
@@ -136,7 +136,7 @@ def makewingui():
     def ures(sender, e):
         utxt.Text = '/'.join(unscramble(utxt.Text))
     ubtn.Click += EventHandler(ures)
-    ubtn.MouseEnter += EventHandler(ures)
+    # ubtn.MouseEnter += EventHandler(ures)
     #
     # form
     #
